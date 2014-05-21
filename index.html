@@ -1,0 +1,906 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sistematizacion para el control de asistencia (SCA) </title>
+<link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/azul.css" />
+<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.mobile-1.0.min.js"></script>
+<script type="text/javascript">
+function MM_popupMsg(msg) { //v1.0
+  alert(msg);
+}
+</script>
+
+<script type="text/javascript">
+$(function(){
+$("#regDo").click(function(){
+	//alert("Ejecucion correcta del boton");
+	var sie=$("#control").val();
+	//alert("Nombre: "+nombre);
+	var nombreDo=$("#nombre").val();
+	//alert("Mail: "+ email);
+	var appat=$("#appaterno").val();
+	//alert("telefono: "+telefono);
+	var apmat=$("#apmaterno").val();
+	var tel=$("#telefono").val();
+	var email=$("#email").val();
+	var curp=$("#curp").val();
+	var contra=$("#contra").val();
+$.ajax({
+	type:"GET",
+	url:"http://magy.260.mb.net/Proyecto/ingredocente.php",
+	data:({SIE:sie,Nom:nombreDo,Appat:appat,Apmat:apmat,Tel:tel,Mail:email,Curp:curp,Cont:contra}),
+	cache:false,
+	dataType:"text",
+	success:exitosa
+});
+	})
+function exitosa(data){
+alert(data);
+}
+});
+</script>
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultar.php",
+		  data:"",
+		  success: consultando
+		  });
+});
+
+function consultando(data){
+	var registro=$.parseJSON(data);
+	var mostrar=$("#mostrar");
+	for( var i=1 in registro){
+		if(registro[i].Carreras==0){
+			
+		}else{
+		mostrar.append("<option value="+i+">"+registro[i].  Carreras+"<option>");
+		}
+		}
+	}
+</script>
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultar.php",
+		  data:"",
+		  success: consultandoDo
+		  });
+});
+
+function consultandoDo(data){
+	var registr=$.parseJSON(data);
+	var mostra=$("#docentese");
+	for( var i in registr){
+		mostra.append("<option value="+i+">"+registr[i].  Carreras+"<option>");
+		
+		}
+	}
+</script>
+
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultar.php",
+		  data:"",
+		  success: consultandoCaG
+		  });
+});
+
+function consultandoCaG(data){
+	var registr=$.parseJSON(data);
+	var mostra=$("#mosCarr");
+	for( var i in registr){
+		mostra.append("<option value="+i+">"+registr[i].  Carreras+"<option>");
+		
+		}
+	}
+</script>
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultaDor.php",
+		  data:"",
+		  success: consultan
+		  });
+
+});
+
+function consultan(data){
+	var registro=$.parseJSON(data);
+	var mostrar=$("#mosDo");
+	for( var i=1 in registro){
+		if(registro[i].Carreras==0){
+			
+		}else{
+		mostrar.append("<option value="+i+">"+registro[i].  Nombre+" "+registro[i].Ap_Pat+" "+registro[i].Ap_Mat+"<option>");
+		}
+		}
+	}
+</script>
+
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultaDor.php",
+		  data:"",
+		  success: consultanDoc
+		  });
+
+});
+
+function consultanDoc(data){
+	var registro=$.parseJSON(data);
+	var mostrar=$("#mosDo2");
+	for( var i=1 in registro){
+		if(registro[i].Carreras==0){
+			
+		}else{
+		mostrar.append("<option value="+i+">"+registro[i].  Nombre+" "+registro[i].Ap_Pat+" "+registro[i].Ap_Mat+"<option>");
+		}
+		}
+	
+	}
+</script>
+
+
+<script type="text/javascript">
+$(function(){
+$("#regEs").click(function(){
+	//alert("Ejecucion correcta del boton");
+	var nuCo=$("#contro").val();
+	//alert("Nombre: "+nombre);
+	var nombreE=$("#nombreE").val();
+	//alert("Mail: "+ email);
+	var appat=$("#appate").val();
+	//alert("telefono: "+telefono);
+	var apmat=$("#apmate").val();
+	var sem=$("#semestre").val();
+	var tel=$("#telefonoe").val();
+	var email=$("#emaile").val();
+	var carrera=$("#mostrar").val();
+	
+$.ajax({
+	type:"GET",
+	url:"http://magy.260.mb.net/Proyecto/ingreEst.php",
+	data:({Num:nuCo,Nom:nombreE,Appat:appat,Apmat:apmat,Sem:sem,Tel:tel,Mail:email,Carr:carrera}),
+	cache:false,
+	dataType:"text",
+	success:exitosa
+});
+	})
+function exitosa(data){
+alert(data);
+}
+});
+</script>
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultarAsi.php",
+		  data:"",
+		  success: consultandoAsi
+		  });
+
+
+function consultandoAsi(data){
+	var registro=$.parseJSON(data);
+	var mostrar=$("#Asigna");
+	
+	for( var i=1 in registro){
+		if(registro[i].Carreras==0){
+			
+		}else{
+		mostrar.append("<option value="+i+">"+registro[i].Clave+" "+registro[i].Nombre+"<option>");
+		}
+		}
+	}
+	});
+</script>
+
+
+<script type="text/javascript">
+
+$(function(){
+$("#CrearContra").click(function(){
+	
+	var docent=$("#mosDo2").val();
+	var contra=$("#ContraOri").val();
+	
+$.ajax({
+	type:"GET",
+	url:"http://magy.260.mb.net/Proyecto/crearContra.php",
+	data:({Doce:docent,Contra:contra}),
+	cache:false,
+	dataType:"text",
+	success:exitosaCo
+});
+	})
+function exitosaCo(data){
+alert(data);
+}
+});
+</script>
+
+
+
+<script type="text/javascript">
+$(function(){
+$("#Cambiar").click(function(){
+		var CoAn=$("#ContraAnt").val();
+	var CoNu=$("#ContraNue").val();
+$.ajax({
+	type:"GET",
+	url:"http://magy.260.mb.net/Proyecto/actualizarContra.php",
+	data:({CA:CoAn,CN:CoNu}),
+	cache:false,
+	dataType:"text",
+	success:exitosoCam
+});
+	})
+function exitosoCam(data){
+alert(data);
+}
+});
+</script>
+
+<script type="text/javascript">
+
+$(function(){
+$("#CrearGrupo").click(function(){
+	
+	var nombreG=$("#Nombre").val();
+	
+$.ajax({
+	type:"GET",
+	url:"http://magy.260.mb.net/Proyecto/IngreGru.php",
+	data:({NomG:nombreG}),
+	cache:false,
+	dataType:"text",
+	success:exitosaGru
+});
+	})
+function exitosaGru(data){
+alert(data);
+}
+});
+</script>
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultarGru.php",
+		  data:"",
+		  success: consultandoAsi
+		  });
+
+
+function consultandoAsi(data){
+	var registro=$.parseJSON(data);
+	var mostrar=$("#mosGru");
+	
+	for( var i=1 in registro){
+		if(registro[i].Carreras==0){
+			
+		}else{
+		mostrar.append("<option value="+i+">"+registro[i].Nombre+"<option>");
+		}
+		}
+	}
+	});
+</script>
+
+<script type="text/javascript">
+$(function(){
+ $.ajax({
+		  type:"POST",
+		  url:"http://magy.260.mb.net/Proyecto/consultarAl.php",
+		  data:"",
+		  success: consultandoAsi
+		  });
+
+
+function consultandoAsi(data){
+	var registro=$.parseJSON(data);
+	var mostrar=$("#mosAl");
+	
+	for( var i=1 in registro){
+		if(registro[i].Carreras==0){
+			
+		}else{
+		mostrar.append("<option value="+i+">"+registro[i].noControl+" "+registro[i].Nombre+" "+registro[i].Ap_Pat+" "+registro[i].Ap_Mat+"<option>");
+		}
+		}
+	}
+	});
+</script>
+
+
+<script type="text/javascript">
+$(function(){
+$("#CargaGrupo").click(function(){
+	var Gru=$("#mosGru").val();
+	var Carr=$("#mosCarr").val();
+	var Alu=$("#mosAl").val();
+	
+$.ajax({
+	type:"GET",
+	url:"http://magy.260.mb.net/Proyecto/insertarGruAl.php",
+	data:({Gr:Gru,Ca:Carr,Al:Alu}),
+	cache:false,
+	dataType:"text",
+	success:exitosa
+});
+	})
+function exitosa(data){
+alert(data);
+}
+});
+</script>
+
+<style>
+#Grupos{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+	}
+#Acceder{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+}
+#Estudiante{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+}
+
+#CreGrupos{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+	
+	}  
+ #CaGrupos{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+	
+	}
+#Principal{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+	
+	}
+	
+#AgreContra{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+	`}
+	#Contra{
+		background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+	}
+#AdmiCon{
+background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";	
+}
+	#Docente{
+		background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+	}
+#botones{
+	position:relative;
+	padding-top:40%;
+	}	
+	#pie{
+		position:relative
+		padding-top:90%;}
+
+#lista{
+	height:50px;
+	width:150px;
+	}
+#contraseña{
+	height:50px;
+	width:150px;
+	}
+#Alta{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+}
+#Carga{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+}
+#Registro{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";	
+}
+#RecuperarContra{
+	background-image:url(Asistencia.jpg);
+	background-position:center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	font-family:"Arial";
+}
+</style>
+</head>
+<body>
+<!-- Pagina principal !-->
+<div data-role="page" id="Principal" >
+<div data-role="header" data-theme="a" >
+<h3>Bienvenido a la aplicación APP SCA<br>Sistematización de control de asistencia</h3>
+</div>
+<div data-role="content">
+<table align="center" id="botones">
+<tr><td><a href="#Acceder" data-role="button" data-transition="flip" >Acceder </a></td>
+</tr></table>
+</div>
+
+
+<div data-role="footer"  data-position="fixed" style="padding:15px 0; text-align:center" id="pie">
+<h4>2014 SCA, Inc. All Rights Reserved</h4>
+</div>
+</div>
+
+
+<!-- Pagina dos !-->
+<div data-role="page" id="Acceder">
+<div data-role="header" data-theme="a">
+<a href="#Principal" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<a href="#Docente" data-role="button" data-transition="flip"> Siguiente </a>
+<h2> Acceder </h2>
+</div>
+<div data-role="content"  >
+
+<table align="center">
+<tr>
+<td>Usuario: </td>
+<td>
+<select>
+ <option selected value="0" id="lista">  </option>       
+       <option value="1">Docente</option> 
+       <option value="2">Estudiante</option>    
+</select></td>
+</tr>
+<tr>
+<td>Clave:</td>
+<td><input type="text" id="usuario" maxlength="8" required></td>
+</tr>
+<tr>
+<td> Contraseña: </td>
+<td> <input type="password" id="contraeña" pattern="[0-9]" maxlength="5" required /></td>
+</tr></table>
+<a href="#Estudiante" data-role="button" data-transition="flip" >Aceptar</a>
+<a href="#Registro" data-role="button" data-transition="flip"> Registro de docentes </a>
+<a href="#RecuperarContra" data-role="button" data-transition="flip"> ¿Docente olvidaste t&uacute; contraseña? </a>
+</div>
+</div>
+
+<!-- Pagina tres !-->
+<div data-role="page" id="Estudiante">
+<div data-role="header" data-theme="a">
+<a href="#Acceder" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2> Estudiante </h2>
+</div>
+<div data-role="content">
+<h3 align="center"> Confirmar asistencia </h3>
+<p><input type="submit" id="btnValidar" value="Aceptar" onclick="MM_popupMsg('Tu asistencia fue registrada correctamente')" >  </p>
+
+</div>
+</div>
+
+<!-- Pagina cuatro !-->
+<div data-role="page" id="Docente">
+<div data-role="header" data-theme="a">
+<a href="#Acceder" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2> Docente </h2>
+</div>
+<div data-role="content">
+<a href="#Alta" data-role="button" data-transition="flip"> Alta de estudiante </a>
+<a href="#Grupos" data-role="button" data-transition="flip"> Grupos </a>
+<a href="#Carga" data-role="button" data-transition="flip"> Carga de materias </a>
+
+<a href="#Admin" data-role="button" data-transition="flip"> Administración de asistencia </a>
+<a href="#AdmiCon" data-role="button" data-transition="flip"> Contraseña </a>
+</div>
+</div>
+
+<!--Grupos-->
+<div data-role="page" id="Grupos">
+<div data-role="header" data-theme="a">
+<a href="#Docente" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2>Grupos</h2>
+</div>
+<div data-role="content">
+<a href="#CreGrupos" data-role="button" data-transition="flip" >Crear Grupos</a>
+<a href="#CaGrupos" data-role="button" data-transition="flip" >Cargar Grupos</a>
+</div>
+<div data-role="footer"></div>
+</div>
+
+<!--Creacion de grupos-->
+<div data-role="page" id="CreGrupos">
+<div data-role="header">
+<a href="#Grupos" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2>Craci&oacute;n de Grupos</h2>
+</div>
+<div data-role="content">
+<p>Nombre:<input type="text" name="Nombre" id="Nombre"></p>
+</div>
+
+<div data-role="footer" align="center">
+<a href="" data-role="button" id="CrearGrupo">Crear Grupos</a>
+</div>
+</div>
+
+
+<!--Carga de grupos-->
+<div data-role="page" id="CaGrupos">
+<div data-role="header">
+<a href="#Grupos" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2>Carga de Grupos</h2>
+</div>
+<div data-role="content">
+<table>
+<tr>
+<td>Grupos:</td>
+<td>
+<select id="mosGru">
+<option selected="seGru">--Grupos--</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Carreras:</td>
+<td>
+<select id="mosCarr">
+<option selected="seGru">--Carreras--</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Alumnos:</td>
+<td>
+<select id="mosAl">
+<option selected="seAl">--Alumnos--</option>
+</select>
+</td>
+</tr>
+</table>
+</div>
+<div data-role="footer" align="center">
+<a href="" data-role="button" id="CargaGrupo">Carga Grupo</a>
+</div>
+</div>
+
+<!--Administrar contrasenia-->
+<div data-role="page" id="AdmiCon">
+<div data-role="header">
+<a href="#Docente" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2>Administrar Contraseña</h2>
+</div>
+<div data-role="content">
+<a href="#AgreContra" data-role="button" data-transition="flip" >Agregar Contraseña</a>
+<a href="#Contra" data-role="button" data-transition="flip" >Cambiar Contraseña</a>
+</div>
+</div>
+
+<!--agregar contrasenia-->
+<div data-role="page" id="AgreContra">
+<div data-role="header">
+<a href="#AdmiCon" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2>Agregar Contraseña</h2>
+</div>
+<div data-role="content">
+<form>
+<fieldset>
+<legend align="center">Agregar Contraseña</legend>
+
+<table>
+<tr><td>Docente:</td>
+<td>
+<select id="mosDo2">
+<option selected="doce">--Docentes--</option>
+</select>
+</td></tr>
+</table>
+
+<p>Contraseña: <input type="text" id="ContraOri"></p>
+</fieldset>
+<a href="#" data-role="button" id="CrearContra">Crear Contraseña</a>
+</form>
+</div>
+
+</div>
+
+<!--Pagina cambiar contrasenia -->
+<div data-role="page" id="Contra">
+<div data-role="header">
+<a href="#AdmiCon" data-role="button" data-transition="flip" >Atra&aacute;s</a>
+<h2>Cambiar Contraseña</h2>
+</div>
+<div data-role="content">
+<form>
+<fieldset>
+<legend align="center"> Cambiar Contraseña </legend>
+<p>Contraseña Antigua: <input type="text" id="ContraAnt" name="ContraAnt"></p>
+<p>Contraseña Nueva: <input type="text" id="ContraNue" name="ContraNue"></p>
+</fieldset>
+<a href="#" data-role="button" id="Cambiar">Cambiar Contraseña</a>
+</form>
+</div>
+
+</div>
+
+<!-- Pagina cinco Altas !-->
+<div data-role="page" id="Alta">
+<div data-role="header" data-theme="a">
+<a href="#Docente" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2> Alta de estudiante </h2>
+</div>
+<div data-role="content">
+<form>
+	<fieldset>
+	<legend align="center"> Alta de estudiante </legend>
+	<p> No. de control: <input type="number" name="contro" id="contro" required> </p>
+	<p> Nombre: <input type="text" name="nombreE" id="nombreE" required></p>
+	<p>Ap. Paterno: <input type="text" name="appate" id="appate" required></p>
+    <p> Ap. Materno: <input type="text" name="apmate" id="apmate" required></p>
+	<p>Semestre: <input type="number" name="semestre" id="semestre" required></p>
+    <p>Tel&eacute;fono: <input type="tel" name="telefonoe" id="telefonoe" required></p>
+	<p>Correo electronico: <input type="email" name="emaile" id="emaile" required></p>
+    <table>
+<tr>
+<td>Carreras:</td>
+<td>
+<select id="mostrar" name="mostrar">
+<option selected="opciones" value="0">--opciones--</option>
+</select>
+</td>
+</tr>
+</table>
+	</fieldset>
+	<p><input type="submit" value="Aceptar" id="regEs"   >  </p>
+    
+	</form>
+
+</div>
+</div>
+
+<!-- Pagina seis Carga !-->
+<div data-role="page" id="Carga">
+<div data-role="header" data-theme="a">
+<a href="#Docente" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2> Carga de materias </h2>
+</div>
+<div data-role="content">
+<form>
+	<fieldset>
+	<legend align="center"> Carga de materias </legend>
+    <table>
+    <tr>
+<td>
+Carrera:
+</td>
+<td>
+<select id="docentese" name="docentese">
+<option selected="opciones">--Opciones--</option>
+</select>
+</td>
+</tr>
+    <tr>
+    <td>
+    Semestre:</td><td><select>
+ <option selected value="0" id="lista">----- </option>       
+       <option value="1">1</option> 
+       <option value="2">2</option>
+       <option value="3">3</option>
+       <option value="4">4</option>          
+       <option value="5">5</option>       
+       <option value="6">6</option>
+       <option value="7">7</option>
+       <option value="8">8</option>
+       <option value="9">9</option>                            
+</select>
+</td>
+</tr>
+
+<tr>
+<td>
+Docente:
+</td>
+<td>
+<select id="mosDo">
+<option selected="doce">--Docentes--</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Asignatura:</td>
+<td>
+<select id="Asigna">
+<option selected="asig">--Asignatura--</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Aula:</td>
+<td>
+<select>
+<option selected value="0" id="sem">----- </option>
+<option value="1">EI01</option>
+<option value="2">EI02</option>
+<option value="3">EI03</option>
+<option value="4">EI04</option>
+<option value="5">EI05</option>
+<option value="6">EI06</option>
+<option value="7">EI07</option>
+<option value="8">EI08</option>
+<option value="9">EI09</option>
+<option value="8">EI10</option>
+<option value="9">EI11</option>
+<option value="10">EIFI</option>
+<option value="11">EB01</option>
+<option value="12">EB02</option>
+<option value="13">EB03</option>
+<option value="14">EB04</option>
+<option value="15">EB05</option>
+<option value="16">EB06</option>
+<option value="17">EB07</option>
+<option value="18">EB08</option>
+<option value="19">EB09</option>
+<option value="20">EBCI</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+Hora Lunes:
+</td>
+<td><input type="text" id="hl"></td>
+</tr>
+<tr>
+<td>
+Hora Martes:
+</td>
+<td><input type="text" id="hm"></td>
+</tr>
+<tr>
+<td>
+Hora Miercoles:
+</td>
+<td><input type="text" id="hmi"></td>
+</tr>
+<tr>
+<td>
+Hora Jueves:
+</td>
+<td><input type="text" id="hj"></td>
+</tr>
+<tr>
+<td>
+Hora Viernes:
+</td>
+<td><input type="text" id="hv"></td>
+</tr>
+<tr>
+<td>
+Hora Sabado:
+</td>
+<td><input type="text" id="hs"></td>
+</tr>
+
+
+
+</table>
+</fieldset>
+	<p><input type="submit" value="Aceptar">  </p>
+</form>
+</div>
+</div>
+
+<!-- Pagina cinco Registro del docente !-->
+<div data-role="page" id="Registro">
+<div data-role="header" data-theme="a">
+<a href="#Acceder" data-role="button" data-transition="flip" >Atr&aacute;s</a>
+<h2>Registro de docente </h2>
+</div>
+<div data-role="content">
+<form>
+	<fieldset>
+	<legend align="center"> Registro de docente </legend>
+	<p> Sie: <input type="number" name="control" id="control" maxlength="3" max="999" min="1" required > </p>
+	<p> Nombre: <input type="text" name="nombre"  id="nombre"  required></p>
+	<p>Ap. Paterno: <input type="text" name="appaterno" id="appaterno" required></p>
+    <p> Ap. Materno: <input type="text" name="apmaterno" id="apmaterno" required></p>
+	    <p>Telefono: <input type="tel" name="telefono" id="telefono" required></p>
+	<p>Correo electronico: <input type="email" id="email" name="email" required></p>
+    <p>CURP: <input type="text" name="curp" id="curp" required></p>
+    <p>Contraseña: <input type="password" id="contra" name="contraseña" required></p>
+	</fieldset>
+	<p><input type="submit" value="Aceptar" id="regDo"   >  </p>
+	</form>
+
+</div>
+</div>
+
+
+<div data-role="page" id="RecuperarContra">
+<div data-role="header" align="center">
+<a href="#Acceder" data-role="button" data-transition="flip"> Atr&aacute;s </a>
+<p>Recupera tu contrasena</p>
+</div>
+<div data-role="content">
+<p>Nombre: <input type="text" id="recnom" placeholder="Alejandro"></p>
+<p>Ape. Paterno: <input type="text" id="recnom" placeholder="Guzman"></p>
+<p>Ape. Materno: <input type="text" id="recnom" placeholder="Rodriguez"></p>
+<p>CURP: <input type="text" id="recnom" placeholder="VIGC920317MPLVRR04"></p>
+</div>
+<div data-role="footer"  data-position="fixed" style="padding:15px 0; text-align:center" id="pie">
+<input type="submit" value="Mostrar contrasena">
+</div>
+</div>
+
+
+
+
+</body>
+</html>
+
